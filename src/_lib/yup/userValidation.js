@@ -23,3 +23,9 @@ export const shopValidation = Yup.object().shape({
 export const codeValidation = Yup.object().shape({
      code: Yup.string().required("وارد کردن کد احراز هویت الزامی است").min(5, "حداقل 5 کاراکتر").max(5, "حداکثر 5 کاراکتر")
 })
+
+
+
+export const shopNameValidation = Yup.object().shape({
+     name: Yup.string().required("وارد کردن نام فروشگاه الزامی است").min(3, "حداقل 3 کاراکتر").max(30, "حداکثر 30 کاراکتر")
+})

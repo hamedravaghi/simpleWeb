@@ -1,9 +1,9 @@
 "use client";
+import { useContext, useEffect } from "react";
 import Button from "@_common/Button";
 import ShopRegisterCard from "@_components/ShopRegisterCard";
 import UserRegisterCard from "@_components/UserRegisterCard";
 import { registerContext } from "@_context/RegisterProvider";
-import { useContext, useEffect } from "react";
 
 const Otp = () => {
   const { role, handleChangeRole, handleReset } = useContext(registerContext);

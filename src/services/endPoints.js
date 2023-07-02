@@ -13,25 +13,26 @@ export const verifyUserApi = (value) => {
 
 }
 
+export const checkShopApi = (value) => {
+     return fetch(`${baseUrl}/shop/check-shop`, { body: JSON.stringify(value), method: "POST", headers })
 
-export const checkNickNameApi = async (value) => {
-     const response = await fetch(`${baseUrl}/shop/check-nick-name`, { body: JSON.stringify(value), method: "POST", headers })
-     const result = await response.json()
-     return { status: response.status, statusText: response.statusText, result }
-}
-
-export const checkShopApi = async (value) => {
-     const response = await fetch(`${baseUrl}/shop/check-shop`, { body: JSON.stringify(value), method: "POST", headers })
-     const result = await response.json()
-
-     return { status: response.status, statusText: response.statusText, result }
 }
 
 
 
-export const verifyShopApi = async (value) => {
-     const response = await fetch(`${baseUrl}/shop/verify`, { body: JSON.stringify(value), method: "POST", headers })
-     const result = await response.json()
 
-     return { status: response.status, statusText: response.statusText, result }
+
+export const confirmNameShop = (value) => {
+     return fetch(`${baseUrl}/shop/confirm-shop`, { body: JSON.stringify(value), method: "PUT", headers })
+}
+
+
+
+
+
+
+export const verifyShopApi = (value) => {
+     return fetch(`${baseUrl}/shop/verify-shop`, { body: JSON.stringify(value), method: "POST", headers })
+
+
 }

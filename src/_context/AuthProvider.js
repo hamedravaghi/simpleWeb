@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
 
      const handleDecodeToken = (token) => {
-          const decodedToken = jwt.decode(token, { complete: true })
+          const decodedToken = jwt.decode(token, { complete: true }).payload
           return decodedToken
      }
 
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
      const login = (token) => {
           if (token) {
                localStorage.setItem("token", token)
-               const decodedToken = jwt.decode(token, { complete: true })
+               const decodedToken = jwt.decode(token, { complete: true }).payload
                setUser(decodedToken)
                setStatus("authenticated")
 

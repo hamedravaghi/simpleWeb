@@ -4,7 +4,7 @@ import Button from "@_common/Button";
 import { AuthContext } from "@_context/AuthProvider";
 import { registerContext } from "@_context/RegisterProvider";
 import { codeValidation } from "@_lib/yup/userValidation";
-import { verifyUserApi } from "@services/endPoints";
+import { verifyUserApi, verifyShopApi } from "@services/endPoints";
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,18 +35,34 @@ const Verify = () => {
 
   useEffect(() => {
     if (!role || !phoneNumber) {
-      // replace("/otp");
+      replace("/otp");
     } else {
       formik.setFieldValue("phoneNumber", phoneNumber);
     }
   }, [phoneNumber, role]);
 
   const handleVefiyShop = async (values) => {
-    //* remember loading false
+    const res = await verifyShopApi(values);
+    if (res.status === 200) {
+      handleLoading(false);
+      toast.success("ورود فروشگاه موفقیت آمیز بود");
+      const token = await res.json();
+      login(token);
+      replace("/dashboard");
+    } else if (res.status === 404) {
+      handleLoading(false);
+      const message = await res.json();
+      toast.error(message);
+    } else {
+      handleLoading(false);
+      toast.error("خطایی رخ داده است");
+    }
   };
 
+  // 200
+  // 404
+
   const handleVerifyUser = async (values) => {
-    console.log(values)
     const res = await verifyUserApi(values);
     if (res.status === 200) {
       handleLoading(false);
