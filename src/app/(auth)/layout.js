@@ -1,6 +1,6 @@
 "use client"
 
-import RegisterProvider from "@_context/RegisterProvider"
+import RegisterProvider from "@/_context/RegisterProvider"
 
 const layout = ({ children }) => {
      return (

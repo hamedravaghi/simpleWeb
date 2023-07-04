@@ -1,7 +1,7 @@
-import Button from "@_common/Button";
-import { registerContext } from "@_context/RegisterProvider";
-import { phoneNumberValidation } from "@_lib/yup/userValidation";
-import { checkShopApi } from "@services/endPoints";
+import Button from "@/_common/Button";
+import { registerContext } from "@/_context/RegisterProvider";
+import { phoneNumberValidation } from "@/_lib/yup/userValidation";
+import { checkShopApi } from "@/services/endPoints";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";

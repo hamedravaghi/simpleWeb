@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@_common/Button";
-import { AuthContext } from "@_context/AuthProvider";
-import { registerContext } from "@_context/RegisterProvider";
-import { codeValidation } from "@_lib/yup/userValidation";
-import { verifyUserApi, verifyShopApi } from "@services/endPoints";
+import Button from "@/_common/Button";
+import { AuthContext } from "@/_context/AuthProvider";
+import { registerContext } from "@/_context/RegisterProvider";
+import { codeValidation } from "@/_lib/yup/userValidation";
+import { verifyUserApi, verifyShopApi } from "@/services/endPoints";
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";

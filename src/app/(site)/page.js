@@ -1,21 +1,49 @@
-"use client"
-import Link from "next/link"
-import { useContext } from "react"
-import { AuthContext } from '@_context/AuthProvider'
-const Home = () => {
-  const { logout, user } = useContext(AuthContext)
-  console.log(user)
-  return (
-    <div className="flex w-full h-screen  bg-slate-400 ">
-      <nav className="flex w-full h-12 bg-slate-100 items-center justify-between p-3 gap-2">
-        <div className="flex flex-row h-full items-center gap-2">
+import ShopSearch from "@/_components/ShopSearch"
+import { getShops } from "@/services/endPoints"
+import Image from 'next/image'
+import ShopCard from '@/_components/ShopCard'
 
-          <button onClick={logout}>خروج</button>
-          <Link href={"/generate"} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ساخت qr code</Link>
-          <Link href={"/read"} className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">خواندن qr code</Link>
-        </div>
-        <p> {user?.phoneNumber} </p>
-      </nav>
+
+async function getData() {
+  const res = await getShops()
+  if (!res.ok) {
+    throw new Error('خطایی در دریافت اطلاعات رخ داده است ... ')
+  }
+  return res.json()
+}
+
+const Home = async () => {
+
+  const shops = await getData()
+
+  let content;
+  if (!shops) {
+    content = <p>در حال دریافت اطلاعات ...</p>
+  } else if (shops && shops.length === 0) {
+    content = <Image src={"/icons/notFound.svg"} width={88} height={88} alt="آپلودک" />
+  } else if (shops && shops.length > 0) {
+
+    content = (
+      <>
+        {
+          shops.map((item) => (
+            <ShopCard key={item._id} name={item.name} shopId={item._id} />
+          ))
+        }
+      </>
+    )
+
+  }
+
+
+
+  return (
+    <div className="p-4 pt-6 ">
+      <ShopSearch />
+      <div className="w-full flex flex-1 gap-2 pt-2">
+
+        {content}
+      </div>
     </div>
   )
 }

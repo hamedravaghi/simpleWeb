@@ -23,11 +23,19 @@ const AuthProvider = ({ children }) => {
           const token = localStorage.getItem("token")
           if (token) {
                const decodedToken = handleDecodeToken(token)
+
                setUser(decodedToken)
                setStatus("authenticated")
+               if (decodedToken.role === "shop") {
+                    replace("/dashboard")
+               } else {
+                    replace("/")
+               }
+
           } else {
                setUser(null)
                setStatus("unathenticated")
+               replace("/otp")
           }
 
 
@@ -59,7 +67,7 @@ const AuthProvider = ({ children }) => {
           localStorage.removeItem("token")
           setUser(null)
           setStatus("unathenticated")
-          replace("/")
+          replace("/otp")
 
      }
 

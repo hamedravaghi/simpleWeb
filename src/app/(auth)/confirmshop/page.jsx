@@ -1,12 +1,12 @@
 "use client";
 import { useContext, useEffect } from "react";
 import { useFormik } from "formik";
-import { registerContext } from "@_context/RegisterProvider";
-import { shopNameValidation } from "@_lib/yup/userValidation";
-import Button from "@_common/Button";
+import { registerContext } from "@/_context/RegisterProvider";
+import { shopNameValidation } from "@/_lib/yup/userValidation";
+import Button from "@/_common/Button";
 import Link from "next/link";
 import Image from "next/image";
-import { confirmNameShop } from "@services/endPoints";
+import { confirmNameShop } from "@/services/endPoints";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 const ConfirmShop = () => {
